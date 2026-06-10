@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Examples - pagemodel</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Examples";
+        var mkdocs_page_input_path = "en/examples.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> pagemodel
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fields/">Fields</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../pipeline/">Pipeline</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../page/">Page & Fragments</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helpers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../utils/">Utilities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorators/">Decorators</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Examples</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-usage">Advanced Usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explicit-field-and-xpathfield">Explicit Field and XpathField</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#json-and-pydantic-models">JSON and Pydantic models</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#keyvalue-aggregation-with-keyvalue">Key‑value aggregation with @keyvalue</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#streaming-large-xml">Streaming large XML</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#export-and-model-conversion">Export and model conversion</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">pagemodel</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/avalak/pagemodel/edit/master/docs/en/examples.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="examples">Examples</h1>
+<h2 id="quick-start">Quick Start</h2>
+<p>The simplest way to extract data is to annotate your fields with Python types
+and provide a CSS selector string.  No need to import <code>Field</code> or remember
+field class names.</p>
+<pre><code class="language-python">from pagemodel import BasePage, fragment
+
+html = &quot;&quot;&quot;&lt;html&gt;&lt;body&gt;
+    &lt;h1&gt;Hello&lt;/h1&gt;
+    &lt;div class=&quot;price&quot; data-value=&quot;9.99&quot; data-currency=&quot;USD&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;
+
+class Page(BasePage):
+    title: str       = &quot;h1&quot;
+    price: float     = &quot;.price @data-value&quot;
+    currency: str    = &quot;.price @data-currency&quot;
+
+page = Page(html)
+print(page.title)     # Hello
+print(page.price)     # 9.99
+print(page.currency)  # USD
+</code></pre>
+<p>XPath expressions are recognised automatically when the string starts with
+<code>//</code>, <code>.//</code>, <code>..</code> or <code>xpath:</code>.</p>
+<pre><code class="language-python">class Page(BasePage):
+    heading: str = &quot;//h1/text()&quot;
+</code></pre>
+<p>The annotation type controls conversion – <code>int</code>, <code>float</code>, <code>bool</code>, <code>str</code>,
+<code>dict</code>, <code>list</code> and <code>Any</code> all work out of the box.</p>
+<pre><code class="language-python">class Page(BasePage):
+    count: int   = &quot;.count&quot;
+    active: bool = &quot;.status&quot;
+    data: dict   = &quot;script[type='application/json']&quot;
+</code></pre>
+<p>For extra inline processing use the <code>Q</code> / <code>Sel</code> / <code>X</code> helpers.</p>
+<pre><code class="language-python">from pagemodel import Q, X
+
+class Page(BasePage):
+    title   = Q(&quot;h1&quot;) | str.strip | str.upper
+    price   = Q(&quot;.price @data-value&quot;) | float
+    heading = X(&quot;//h1/text()&quot;) | str.lower
+</code></pre>
+<p>Repeating items are described with the <code>@fragment</code> decorator.</p>
+<pre><code class="language-python">class Page(BasePage):
+    @fragment(&quot;.product&quot;, multiple=True)
+    class Product:
+        name: str   = &quot;.name&quot;
+        price: float = &quot;.price @data-value&quot;
+</code></pre>
+<hr />
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="explicit-field-and-xpathfield">Explicit <code>Field</code> and <code>XpathField</code></h3>
+<p>For full control over extraction options (JSON parsing, namespaces, fragment
+wrapping, etc.) use the <code>Field</code> descriptor directly.</p>
+<pre><code class="language-python">from pagemodel import BasePage, Field
+
+class Page(BasePage):
+    heading  = Field(&quot;h1&quot;)
+    price    = Field(&quot;.price&quot;, attr=&quot;data-value&quot;) | float
+    currency = Field(&quot;.price&quot;, attr=&quot;data-currency&quot;, default=&quot;USD&quot;)
+    items    = Field(&quot;.item&quot;, multiple=True)
+</code></pre>
+<p><code>XpathField</code> gives you the raw result of <code>doc.xpath()</code> – useful for complex
+XPath queries that mix text, attributes and elements.</p>
+<pre><code class="language-python">from pagemodel import XpathField
+
+class Page(BasePage):
+    mixed = XpathField(&quot;//div/* | //div/@*&quot;, index=None)
+</code></pre>
+<h3 id="json-and-pydantic-models">JSON and Pydantic models</h3>
+<p>Add <code>json=True</code> to parse element content or an attribute as JSON.  Pass a
+Pydantic model via <code>model</code> to validate the result automatically.</p>
+<pre><code class="language-python">from pydantic import BaseModel
+
+class Product(BaseModel):
+    name: str
+    price: float
+
+class Page(BasePage):
+    product: Product = &quot;script[type='application/json']&quot;
+
+page = Page('&lt;script type=&quot;application/json&quot;&gt;{&quot;name&quot;:&quot;Pen&quot;,&quot;price&quot;:1.5}&lt;/script&gt;')
+print(page.product.name)   # Pen
+print(page.product.price)  # 1.5
+</code></pre>
+<h3 id="keyvalue-aggregation-with-keyvalue">Key‑value aggregation with <code>@keyvalue</code></h3>
+<p>Turn a list of fragments into a dictionary with one decorator.</p>
+<pre><code class="language-python">from pagemodel import keyvalue
+
+@keyvalue(&quot;Spec&quot;, key_field=&quot;label&quot;, value_field=&quot;val&quot;, export_name=&quot;specs&quot;)
+class Page(BasePage):
+    @fragment(&quot;.row&quot;, multiple=True)
+    class Spec:
+        label: str = &quot;.key&quot;
+        val: str = &quot;.val&quot;
+
+page = Page(&quot;&quot;&quot;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;key&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;Red&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;key&quot;&gt;Size&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;XL&lt;/span&gt;&lt;/div&gt;
+&quot;&quot;&quot;)
+
+print(page.export())
+# {'specs': {'Color': 'Red', 'Size': 'XL'}}
+</code></pre>
+<h3 id="streaming-large-xml">Streaming large XML</h3>
+<p><code>StreamPage</code> processes one element at a time, yielding exported dictionaries
+without loading the whole tree into memory.</p>
+<pre><code class="language-python">from pagemodel import StreamPage, HtmlFragment, Field
+
+class Item(HtmlFragment):
+    name = Field(&quot;name&quot;)
+
+xml = &quot;&quot;&quot;&lt;root&gt;
+    &lt;item&gt;&lt;name&gt;Alice&lt;/name&gt;&lt;/item&gt;
+    &lt;item&gt;&lt;name&gt;Bob&lt;/name&gt;&lt;/item&gt;
+&lt;/root&gt;&quot;&quot;&quot;
+
+stream = StreamPage(xml, tag_callback_map={&quot;item&quot;: Item})
+for entry in stream.iter_items(&quot;item&quot;):
+    print(entry)   # {'name': 'Alice'}   {'name': 'Bob'}
+</code></pre>
+<h3 id="export-and-model-conversion">Export and model conversion</h3>
+<p>Call <code>export()</code> to get a plain dictionary, or <code>to_model()</code> to hydrate a
+Pydantic model.</p>
+<pre><code class="language-python">from pydantic import BaseModel
+
+class CatalogModel(BaseModel):
+    title: str
+    products: list[dict]
+
+class Page(BasePage):
+    title = Field(&quot;h1&quot;)
+    @fragment(&quot;.product&quot;, multiple=True)
+    class Product:
+        name: str = &quot;.name&quot;
+        price: float = &quot;.price @data-value&quot;
+
+page = Page(&quot;...&quot;)
+catalog = page.to_model(CatalogModel)
+print(catalog.title)   # Catalog
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../decorators/" class="btn btn-neutral float-left" title="Decorators"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/avalak/pagemodel" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../decorators/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

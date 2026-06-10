@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Declarative HTML/XML extraction framework" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>pagemodel</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "en/index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> pagemodel
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick start</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-usage">Advanced usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#explicit-field-json-and-pydantic-models">Explicit Field, JSON and Pydantic models</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#keyvalue-aggregation-with-keyvalue">Key‑value aggregation with @keyvalue</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#streaming-large-xml">Streaming large XML</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="fields/">Fields</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="pipeline/">Pipeline</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="page/">Page & Fragments</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="helpers/">Helpers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="utils/">Utilities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="decorators/">Decorators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="examples/">Examples</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">pagemodel</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/avalak/pagemodel/edit/master/docs/en/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="pagemodel">pagemodel</h1>
+<p>A declarative HTML/XML extraction framework built on lxml.</p>
+<h2 id="installation">Installation</h2>
+<pre><code>pip install pagemodel
+# or with extra dependencies
+pip install pagemodel[all]
+</code></pre>
+<p>Python <strong>&gt;=3.10</strong> is required.</p>
+<h2 id="quick-start">Quick start</h2>
+<pre><code class="language-python">from pagemodel import BasePage, fragment
+
+html = &quot;&quot;&quot;&lt;html&gt;&lt;body&gt;
+    &lt;h1&gt;Catalog&lt;/h1&gt;
+    &lt;div class=&quot;product&quot;&gt;
+        &lt;span class=&quot;name&quot;&gt;Pen&lt;/span&gt;
+        &lt;span class=&quot;price&quot; data-value=&quot;1.5&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;product&quot;&gt;
+        &lt;span class=&quot;name&quot;&gt;Paper&lt;/span&gt;
+        &lt;span class=&quot;price&quot; data-value=&quot;2.0&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;
+
+class Page(BasePage):
+    title: str = &quot;h1&quot;
+
+    @fragment(&quot;.product&quot;, multiple=True)
+    class Product:
+        name: str   = &quot;.name&quot;
+        price: float = &quot;.price @data-value&quot;
+
+page = Page(html)
+print(page.title)          # Catalog
+for prod in page.Product:
+    print(prod.name, prod.price)
+print(page.export())       # full dictionary
+</code></pre>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Unified <code>Field</code> descriptor</strong> – handles text, attributes, JSON, fragments,
+  and multiple values via a single class. CSS and XPath selectors are
+  auto‑detected and pre‑compiled.</li>
+<li><strong>Type‑driven annotations</strong> – write <code>title: str = "h1"</code> and the library
+  automatically picks the right converter (<code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>,
+  <code>dict</code>, <code>list</code>, Pydantic models).</li>
+<li><strong><code>@fragment</code> decorator</strong> – describe repeating blocks of HTML without
+  leaving the page class.</li>
+<li><strong><code>@keyvalue</code> decorator</strong> – turn a list of fragments into a dictionary
+  with one line.</li>
+<li><strong>Built‑in Pydantic integration</strong> – validate JSON data and export directly
+  to your models.</li>
+<li><strong>Streaming parser</strong> (<code>StreamPage</code>) for large XML files that cannot fit in
+  memory.</li>
+<li><strong>Compact helpers</strong> <code>Q</code>, <code>Sel</code>, <code>X</code> for rapid field creation with pipeline
+  support (<code>| float</code>, <code>| str.strip</code>).</li>
+<li><strong>Fast</strong> – selectors are compiled once, results are cached, and lxml does
+  the heavy lifting in C.</li>
+</ul>
+<h2 id="advanced-usage">Advanced usage</h2>
+<h3 id="explicit-field-json-and-pydantic-models">Explicit <code>Field</code>, JSON and Pydantic models</h3>
+<pre><code class="language-python">from pagemodel import BasePage, Field
+from pydantic import BaseModel
+
+class ProductModel(BaseModel):
+    name: str
+    price: float
+
+class Page(BasePage):
+    product: ProductModel = &quot;script[type='application/json']&quot;
+
+page = Page('&lt;script type=&quot;application/json&quot;&gt;{&quot;name&quot;:&quot;Pen&quot;,&quot;price&quot;:1.5}&lt;/script&gt;')
+print(page.product.name)   # Pen
+print(page.product.price)  # 1.5
+</code></pre>
+<h3 id="keyvalue-aggregation-with-keyvalue">Key‑value aggregation with <code>@keyvalue</code></h3>
+<pre><code class="language-python">from pagemodel import BasePage, fragment, keyvalue
+
+@keyvalue(&quot;Spec&quot;, key_field=&quot;label&quot;, value_field=&quot;val&quot;, export_name=&quot;specs&quot;)
+class Page(BasePage):
+    @fragment(&quot;.row&quot;, multiple=True)
+    class Spec:
+        label: str = &quot;.key&quot;
+        val: str   = &quot;.val&quot;
+
+page = Page(&quot;&quot;&quot;&lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;key&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;val&quot;&gt;Red&lt;/span&gt;&lt;/div&gt;&quot;&quot;&quot;)
+print(page.export())   # {'specs': {'Color': 'Red'}}
+</code></pre>
+<h3 id="streaming-large-xml">Streaming large XML</h3>
+<pre><code class="language-python">from pagemodel import StreamPage, HtmlFragment, Field
+
+class Item(HtmlFragment):
+    name = Field(&quot;name&quot;)
+
+xml = &quot;&quot;&quot;&lt;root&gt;&lt;item&gt;&lt;name&gt;Alice&lt;/name&gt;&lt;/item&gt;&lt;item&gt;&lt;name&gt;Bob&lt;/name&gt;&lt;/item&gt;&lt;/root&gt;&quot;&quot;&quot;
+stream = StreamPage(xml, tag_callback_map={&quot;item&quot;: Item})
+for entry in stream.iter_items(&quot;item&quot;):
+    print(entry)   # {'name': 'Alice'}   {'name': 'Bob'}
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><a href="fields/">Fields</a></li>
+<li><a href="pipeline/">Pipeline</a></li>
+<li><a href="page/">Page &amp; Fragments</a></li>
+<li><a href="helpers/">Helpers</a></li>
+<li><a href="utils/">Utilities</a></li>
+<li><a href="decorators/">Decorators</a></li>
+<li><a href="examples/">Examples</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="fields/" class="btn btn-neutral float-right" title="Fields">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/avalak/pagemodel" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="fields/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+      <script src="js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-06-10 16:35:05.912786+00:00
+-->

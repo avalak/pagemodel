@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Decorators - pagemodel</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Decorators";
+        var mkdocs_page_input_path = "en/decorators.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> pagemodel
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fields/">Fields</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../pipeline/">Pipeline</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../page/">Page & Fragments</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helpers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../utils/">Utilities</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Decorators</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pagemodel.decorators">decorators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pagemodel.decorators-functions">Functions:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pagemodel.decorators.keyvalue">keyvalue</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../examples/">Examples</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">pagemodel</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Decorators</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/avalak/pagemodel/edit/master/docs/en/decorators.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="decorators">Decorators</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="pagemodel.decorators" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">pagemodel.decorators</span>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+        <p>Higher-order decorators for pagemodel classes.</p>
+<p>Currently provides <code>@keyvalue</code>, which automatically creates an <code>@export</code>
+method that turns a list of fragments into a dictionary.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+<h3 id="pagemodel.decorators-functions">Functions:</h3>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="pagemodel.decorators.keyvalue" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">keyvalue</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">keyvalue</span><span class="p">(</span>
+    <span class="n">fragments_attr</span><span class="p">,</span>
+    <span class="n">key_field</span><span class="o">=</span><span class="s2">&quot;key&quot;</span><span class="p">,</span>
+    <span class="n">value_field</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+    <span class="n">export_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Class decorator that adds an <code>@export</code> method converting a list of
+fragments to a dictionary.</p>
+<p>Usage::</p>
+<pre><code>@keyvalue("Spec", key_field="k", value_field="v", export_name="specs")
+class Page(BasePage):
+    @fragment(".row", multiple=True)
+    class Spec:
+        k: str = ".key"
+        v: str = ".val"
+</code></pre>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>fragments_attr</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Name of the attribute holding the list of fragments.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>key_field</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;key&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Field name on the fragment to use as dictionary key. Default <code>"key"</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>value_field</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;value&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Field name on the fragment to use as dictionary value. Default <code>"value"</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>export_name</code></b>
+                  (<code><span title="str">str</span> or None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Name under which the dictionary appears in <code>export()</code>. If <code>None</code>,
+<em>fragments_attr</em> is used.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../utils/" class="btn btn-neutral float-left" title="Utilities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../examples/" class="btn btn-neutral float-right" title="Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/avalak/pagemodel" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../utils/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../examples/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Fields - pagemodel</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Fields";
+        var mkdocs_page_input_path = "en/fields.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> pagemodel
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Fields</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pagemodel.fields">fields</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pagemodel.fields-classes"></a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pagemodel.fields.BaseField">BaseField</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pagemodel.fields.Field">Field</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pagemodel.fields.FragmentDescriptor">FragmentDescriptor</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pagemodel.fields.XpathField">XpathField</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pagemodel.fields-functions">Functions:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pagemodel.fields.export">export</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pagemodel.fields.fragment">fragment</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../pipeline/">Pipeline</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../page/">Page & Fragments</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helpers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../utils/">Utilities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../decorators/">Decorators</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../examples/">Examples</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">pagemodel</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Fields</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/avalak/pagemodel/edit/master/docs/en/fields.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="fields">Fields</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="pagemodel.fields" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">pagemodel.fields</span>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+        <p>Fields package for pagemodel.</p>
+<p>This package provides the building blocks for declarative HTML/XML extraction.</p>
+
+
+<details class="core-descriptors" open>
+  <summary>Core descriptors</summary>
+  <ul>
+<li><code>BaseField</code> – abstract base class for all field descriptors, implementing
+  caching, pipeline support, and export registration.</li>
+<li><code>Field</code> – unified field descriptor that replaces all specialised types from
+  earlier versions (TextField, AttrField, etc.). Supports CSS and XPath
+  selectors, text/attribute extraction, JSON parsing with optional Pydantic
+  validation, fragment wrapping, and multiple-value modes.</li>
+<li><code>XpathField</code> – specialised descriptor for raw XPath queries, returning the
+  exact result of <code>doc.xpath()</code> without automatic text extraction.</li>
+</ul>
+</details>
+
+<details class="fragment-support" open>
+  <summary>Fragment support</summary>
+  <ul>
+<li><code>fragment</code> – class decorator that turns a plain class into an
+  <code>HtmlFragment</code> and wraps it in a <code>FragmentDescriptor</code> for use on a page.</li>
+<li><code>FragmentDescriptor</code> – descriptor that extracts elements matching a CSS
+  selector, instantiates the associated fragment class, and caches the result.</li>
+</ul>
+</details>
+
+<details class="utilities" open>
+  <summary>Utilities</summary>
+  <ul>
+<li><code>export</code> – decorator that marks a method for inclusion in <code>export()</code>
+  output.</li>
+</ul>
+<p>All public symbols are re‑exported from the package root for convenience.</p>
+</details>
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<h3 id="pagemodel.fields-classes"></h3>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="pagemodel.fields.BaseField" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">BaseField</span>
+
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Base descriptor for all field types.</p>
+<p>Provides caching, pipeline support, automatic registration for export,
+and low‑level CSS/XPath query execution.  Concrete field classes must
+implement <code>_get(instance, owner)</code>.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+<h5 id="pagemodel.fields.BaseField-functions">Methods:</h5>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="pagemodel.fields.BaseField.__get__" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">__get__</span>
+
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">__get__</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Extract the value on first access, apply the pipeline, and cache.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="pagemodel.fields.BaseField.__or__" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">__or__</span>
+
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">__or__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Add a pipeline step (or pipe) to the field.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="pagemodel.fields.Field" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">Field</span>
+
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Universal field descriptor.</p>
+<p>Automatically detects CSS vs XPath selectors, pre‑compiles them,
+and generates a branch‑free extractor for maximum speed.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>selector</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>CSS selector, XPath expression (<code>//h1</code>), or <code>xpath://h1</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>attr</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If set, extract an attribute instead of text.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>json</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If True, parse text/attribute content as JSON.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>model</code></b>
+                  (<code><span title="type">type</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Pydantic model class to validate JSON data (only used with <code>json=True</code>).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>multiple</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If True, return a list of values (text/attr/JSON) instead of a single one.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>fragment</code></b>
+                  (<code><span title="type">type</span>[<a class="autorefs autorefs-internal" title="BaseFragment (pagemodel.page.BaseFragment)" href="../page/#pagemodel.page.BaseFragment">BaseFragment</a>]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If set, wrap each selected element into the given fragment class.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>index</code></b>
+                  (<code><span title="int">int</span> or None</code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Index of the element to pick (0-based). <code>None</code> returns all matched elements
+(as a list of fragments if <code>fragment</code> is set, otherwise list of strings).
+Ignored when <code>multiple=True</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>default</code></b>
+                  (<code><span title="any">any</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Value returned when the selector matches nothing or index is out of range.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>namespaces</code></b>
+                  (<code><span title="dict">dict</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Namespace prefix-to-URI mapping for XPath expressions.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>converter</code></b>
+                  (<code>callable, Pipe, or None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Applied to the extracted value (or each value when <code>multiple=True</code>).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>is_exported</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to include this field in <code>export()</code>. Default True.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="pagemodel.fields.FragmentDescriptor" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">FragmentDescriptor</span>
+
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Descriptor for <code>@fragment</code> decorated classes. Caches the extracted
+fragment(s) on the page instance.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>selector</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>CSS selector (relative to the page document) that matches the elements
+to be wrapped.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>fragment_cls</code></b>
+                  (<code><span title="type">type</span>[<a class="autorefs autorefs-internal" title="HtmlFragment (pagemodel.page.HtmlFragment)" href="../page/#pagemodel.page.HtmlFragment">HtmlFragment</a>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>The fragment class (a subclass of <code>HtmlFragment</code>) to instantiate for
+each matched element.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>multiple</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If <code>True</code>, return a list of fragments (one per matched element).
+Otherwise return a single fragment or <code>default</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>default</code></b>
+                  (<code><span title="any">any</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Value returned when no elements are matched (only relevant when
+<code>multiple=False</code>).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>name</code></b>
+                  (<code><span title="str">str</span> or None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Explicit name to use in <code>export()</code> output. If <code>None</code>, the export
+name is derived from the class attribute name by converting it to
+snake_case.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+<h5 id="pagemodel.fields.FragmentDescriptor-attributes"></h5>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="pagemodel.fields.FragmentDescriptor.fragment_cls" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">fragment_cls</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">fragment_cls</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>The fragment class used to wrap matched elements.</p>
+
+    </div>
+
+</div>
+
+
+<h5 id="pagemodel.fields.FragmentDescriptor-functions">Methods:</h5>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="pagemodel.fields.FragmentDescriptor.__get__" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">__get__</span>
+
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">__get__</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Extract fragment(s) on first access and cache the result in the
+instance dictionary.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="pagemodel.fields.XpathField" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">XpathField</span>
+
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Extract data using an XPath expression.</p>
+<p>Returns the raw result of <code>doc.xpath(selector)</code>, typically a list of
+strings or elements. Use <code>index</code> to pick a specific value.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>selector</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>XPath expression (e.g. <code>//h1/text()</code>, <code>//div/@data-value</code>).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>index</code></b>
+                  (<code><span title="int">int</span> or None</code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If None, return the whole list. If an integer, return the element at
+that index (default 0). If out of range, return <code>default</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>default</code></b>
+                  (<code><span title="any">any</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Value returned when the XPath matches nothing or index is out of range.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>namespaces</code></b>
+                  (<code><span title="dict">dict</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Namespace prefix-to-URI mapping for the XPath expression.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>converter</code></b>
+                  (<code><span title="callable">callable</span> or <a class="autorefs autorefs-internal" title="Pipe (pagemodel.pipeline.Pipe)" href="../pipeline/#pagemodel.pipeline.Pipe">Pipe</a></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Applied to the final value (before returning).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>is_exported</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to include this field in <code>export()</code> output. Default True.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+<h3 id="pagemodel.fields-functions">Functions:</h3>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="pagemodel.fields.export" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">export</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">export</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Decorator that marks a method for inclusion in <code>export()</code>.</p>
+<p>Can be used without arguments::</p>
+<pre><code>@export
+def computed_value(self):
+    return ...
+</code></pre>
+<p>or with a custom export name::</p>
+<pre><code>@export("custom_name")
+def some_method(self):
+    return ...
+</code></pre>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="pagemodel.fields.fragment" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">fragment</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">fragment</span><span class="p">(</span>
+    <span class="n">selector</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Class decorator that turns a plain class into an <code>HtmlFragment</code> and
+returns a <code>FragmentDescriptor</code> for use on a <code>BasePage</code>.</p>
+<p>Usage::</p>
+<pre><code>class Page(BasePage):
+    @fragment(".product", multiple=True)
+    class Product:
+        name: str = ".name"
+        price: float = ".price @data-value"
+</code></pre>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>selector</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>CSS selector (relative to the page document) that matches the elements
+to be wrapped.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>multiple</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If <code>True</code>, the descriptor will return a list of fragments (one per
+matched element). Otherwise it returns a single fragment or <code>default</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>default</code></b>
+                  (<code><span title="any">any</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Value returned when no elements are matched (only relevant when
+<code>multiple=False</code>).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>name</code></b>
+                  (<code><span title="str">str</span> or None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Explicit name to use in <code>export()</code> output. If <code>None</code>, the export
+name is derived from the class attribute name by converting it to
+snake_case.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pipeline/" class="btn btn-neutral float-right" title="Pipeline">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/avalak/pagemodel" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../pipeline/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
