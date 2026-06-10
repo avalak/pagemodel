@@ -1,0 +1,42 @@
+site_name: pagemodel
+site_description: Declarative HTML/XML extraction framework
+repo_url: https://github.com/avalak/pagemodel
+
+theme:
+  name: readthedocs
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: numpy
+            show_source: false
+            heading_level: 2
+            show_root_heading: true
+            show_category_heading: true
+            show_bases: false
+            separate_signature: true
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+
+nav:
+  - Home: index.md
+  - Fields: fields.md
+  - Pipeline: pipeline.md
+  - Page & Fragments: page.md
+  - Helpers: helpers.md
+  - Utilities: utils.md
+  - Decorators: decorators.md
+  - Examples: examples.md
+
+extra:
+  version:
+    provider: mike

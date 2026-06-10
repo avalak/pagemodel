@@ -1,0 +1,12 @@
+# .gitignore
+# https://git-scm.com/docs/gitignore
+
+.venv
+venv
+__pycache__
+*.egg-info
+.ruff_cache
+site/
+build/
+*.prof
+uv.lock
