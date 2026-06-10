@@ -1,6 +1,9 @@
 # pagemodel
 
 [![tests](https://github.com/avalak/pagemodel/actions/workflows/tests.yml/badge.svg)](https://github.com/avalak/pagemodel/actions/workflows/tests.yml)
+[![publish](https://github.com/avalak/pagemodel/actions/workflows/publish.yml/badge.svg)](https://github.com/avalak/pagemodel/actions/workflows/publish.yml)
+[![PyPI - Version](https://img.shields.io/pypi/v/pagemodel)](https://pypi.org/project/pagemodel/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pagemodel)
 
 ---
 
@@ -121,8 +124,7 @@ for entry in stream.iter_items("item"):
 
 ## Documentation
 
-Full documentation is available at **https://avalak.github.io/pagemodel**
-(Build locally with `uv run mkdocs serve`)
+[Documentation](https://avalak.github.io/pagemodel "pagemodel - Documentation")
 
 ## Running tests
 
