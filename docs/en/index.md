@@ -1,6 +1,6 @@
 # pagemodel
 
-A declarative HTML/XML extraction framework built on lxml.
+A declarative HTML/XML extraction framework built on lxml. Define page structure with Python type annotations and Fields – fast, cached, and Pydantic-ready.
 
 ## Installation
 

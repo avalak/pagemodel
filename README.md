@@ -2,12 +2,12 @@
 
 [![tests](https://github.com/avalak/pagemodel/actions/workflows/tests.yml/badge.svg)](https://github.com/avalak/pagemodel/actions/workflows/tests.yml)
 [![publish](https://github.com/avalak/pagemodel/actions/workflows/publish.yml/badge.svg)](https://github.com/avalak/pagemodel/actions/workflows/publish.yml)
-[![PyPI - Version](https://img.shields.io/pypi/v/pagemodel)](https://pypi.org/project/pagemodel/)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pagemodel)
+[![PyPI - Version](https://img.shields.io/pypi/v/pagemodel?cacheBuster=1)](https://pypi.org/project/pagemodel/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pagemodel?cacheBuster=1)
 
 ---
 
-A declarative HTML/XML extraction framework built on lxml.
+A declarative HTML/XML extraction framework built on lxml. Define page structure with Python type annotations and Fields – fast, cached, and Pydantic-ready.
 
 ## Features
 

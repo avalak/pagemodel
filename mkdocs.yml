@@ -1,5 +1,5 @@
 site_name: pagemodel
-site_description: Declarative HTML/XML extraction framework
+site_description: A declarative HTML/XML extraction framework built on lxml. Define page structure with Python type annotations and Fields – fast, cached, and Pydantic-ready.
 repo_url: https://github.com/avalak/pagemodel
 
 theme:
